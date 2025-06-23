@@ -27,8 +27,6 @@ graph TD
   - Manages user interaction and validation
   - Displays success/error messages
 
-- **`example.html`** - Standalone demo version for testing outside Squarespace
-
 ### Backend Components
 - **`src/index.js`** - Cloudflare Worker (main backend)
   - Processes form submissions
@@ -95,21 +93,20 @@ sequenceDiagram
 ## 🏢 Service Accounts & Configuration
 
 ### Cloudflare Account
-- **Email**: `[YOUR_CLOUDFLARE_EMAIL]`
+- **Email**: currently set to dta35@cornell.edu, can be switched
 - **Worker Name**: `wine-storage`
 - **Custom Domain**: `wine-storage.iwv.workers.dev`
 - **KV Namespace**: `WINES` (ID: `c93a28dcff3f4aa48003255eb3783390`)
 
 ### Resend Email Service
-- **Email**: `[YOUR_RESEND_ACCOUNT_EMAIL]`
-- **API Key**: `[YOUR_RESEND_API_KEY]` (stored as Worker secret)
-- **From Address**: `onboarding@resend.dev` (sandbox domain)
-- **To Address**: `dta35@cornell.edu`
+- **Email**: currently set to dta35@cornell.edu, can be switched
+- **API Key**: (stored as Worker secret)
+- **From Address**: `onboarding@resend.dev` (sandbox domain), need to link to your domain 
+- **To Address**: `dta35@cornell.edu` can be adjusted to wherever you want it 
 - **Domain Status**: Using sandbox (intlwinevault.com unverified)
 
 ### Google Cloud Platform
-- **Email**: `[YOUR_GOOGLE_ACCOUNT_EMAIL]`
-- **Apps Script Project**: `[YOUR_APPS_SCRIPT_PROJECT_NAME]`
+- **Email**:currently set to dta35@cornell.edu, can be switched
 - **Deployment ID**: `AKfycbxjGIwt8YXfz4jmOcLqM8-2nMWMS2WM1IzdE92sSZdsS6G0AiWRe49EcJD4LE0A3OhG`
 - **Webhook URL**: `https://script.google.com/macros/s/AKfycbxjGIwt8YXfz4jmOcLqM8-2nMWMS2WM1IzdE92sSZdsS6G0AiWRe49EcJD4LE0A3OhG/exec`
 - **Spreadsheet ID**: `1SeBx16Skhzg5NRZR3ghM_sj_SRt6fGS2fgkij7lR9Gw`
@@ -204,24 +201,6 @@ git remote add origin https://github.com/[YOUR_USERNAME]/wine-storage.git
 git push -u origin main
 ```
 
-### Recommended Repository Structure
-```
-wine-storage/
-├── README.md
-├── package.json
-├── package-lock.json
-├── wrangler.jsonc
-├── src/
-│   └── index.js
-├── test/
-│   └── index.spec.js
-├── docs/
-│   ├── form.html
-│   ├── example.html
-│   └── csv_script.gs
-└── .gitignore
-```
-
 ### Environment Variables Management
 Create `.env.example` file:
 ```bash
@@ -299,16 +278,4 @@ When approaching free tier limits:
 - Higher API quotas
 - Advanced admin controls
 
----
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/new-feature`)
-3. Commit changes (`git commit -am 'Add new feature'`)
-4. Push to branch (`git push origin feature/new-feature`)
-5. Create Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details. 
