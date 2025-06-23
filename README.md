@@ -123,7 +123,7 @@ sequenceDiagram
 - **KV Operations**: 
   - Reads: 100,000/day
   - Writes: 1,000/day
-  - Storage: 1GB total
+  - Storage: 1GB total (roughly 2.6 million entries, assuming 415 bytes per entry)
 - **Monthly Cost**: $0
 
 ### Resend (Free Plan)
