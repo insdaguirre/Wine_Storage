@@ -83,12 +83,12 @@ export default {
 							Authorization: `Bearer ${env.RESEND_KEY}`,
 							'Content-Type': 'application/json'
 						},
-						body: JSON.stringify({
-							from: 'onboarding@resend.dev',
-							to: 'dta35@cornell.edu',
-							subject: `Wine Storage Request: ${(data.first_name || '').trim()} ${(data.last_name || '').trim()} (${data.cases || 'unknown'} cases)`,
-							html: emailBody
-						})
+											body: JSON.stringify({
+						from: 'onboarding@resend.dev',
+						to: 'info@intlwinevault.com',
+						subject: `Wine Storage Request: ${(data.first_name || '').trim()} ${(data.last_name || '').trim()} (${data.cases || 'unknown'} cases)`,
+						html: emailBody
+					})
 					});
 
 					const emailResponseText = await emailResponse.text();
