@@ -24,17 +24,8 @@
 
       <div style="margin-bottom:20px;">
         <label style="font-weight:500;display:block;margin-bottom:12px;">How many cases will you be storing with us?<span class="required-asterisk">*</span></label>
-        <div id="casesContainer" style="display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;">
-          <!-- LEFT COLUMN: 7 highest ranges (126-140 through 1000+) -->
-          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="126-140" style="margin-right:20px;"> 126–140</label>
-          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="141-170" style="margin-right:20px;"> 141–170</label>
-          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="171-225" style="margin-right:20px;"> 171–225</label>
-          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="226-420" style="margin-right:20px;"> 226–420</label>
-          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="421-690" style="margin-right:20px;"> 421–690</label>
-          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="691-1000" style="margin-right:20px;"> 691–1000</label>
-          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="1000+" style="margin-right:20px;"> 1000+</label>
-          
-          <!-- RIGHT COLUMN: 7 lowest ranges (1-10 through 101-125) -->
+        <div id="casesContainer" style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(7,auto);grid-auto-flow:column;gap:12px 20px;">
+          <!-- Grid will fill column-by-column: first 7 items go to left column, next 7 to right column -->
           <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="1-10" required style="margin-right:20px;"> 1–10</label>
           <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="11-20" style="margin-right:20px;"> 11–20</label>
           <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="21-40" style="margin-right:20px;"> 21–40</label>
@@ -42,6 +33,13 @@
           <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="61-70" style="margin-right:20px;"> 61–70</label>
           <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="71-100" style="margin-right:20px;"> 71–100</label>
           <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="101-125" style="margin-right:20px;"> 101–125</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="126-140" style="margin-right:20px;"> 126–140</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="141-170" style="margin-right:20px;"> 141–170</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="171-225" style="margin-right:20px;"> 171–225</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="226-420" style="margin-right:20px;"> 226–420</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="421-690" style="margin-right:20px;"> 421–690</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="691-1000" style="margin-right:20px;"> 691–1000</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="1000+" style="margin-right:20px;"> 1000+</label>
         </div>
       </div>
 
