@@ -68,38 +68,45 @@ export default {
 			let emailStatus = 'success';
 			let emailError = null;
 
-			try {
-				console.log('📧 Attempting to send email via Resend...');
-				
-				const emailResponse = await fetch('https://api.resend.com/emails', {
-					method: 'POST',
-					headers: {
-						Authorization: `Bearer ${env.RESEND_KEY}`,
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-						from: 'onboarding@resend.dev',
-						to: 'dta35@cornell.edu',
-						subject: `Wine Storage Request: ${(data.first_name || '').trim()} ${(data.last_name || '').trim()} (${data.cases || 'unknown'} cases)`,
-						html: emailBody
-					})
-				});
-
-				const emailResponseText = await emailResponse.text();
-				console.log('📧 Resend API response status:', emailResponse.status);
-				console.log('📧 Resend API response body:', emailResponseText);
-
-				if (!emailResponse.ok) {
-					emailStatus = 'failed';
-					emailError = `Resend API error ${emailResponse.status}: ${emailResponseText}`;
-					console.error('❌ Email sending failed:', emailError);
-				} else {
-					console.log('✅ Email sent successfully!');
-				}
-			} catch (emailErr) {
+			// Check if RESEND_KEY is available
+			if (!env.RESEND_KEY) {
 				emailStatus = 'failed';
-				emailError = `Email sending exception: ${emailErr.message}`;
-				console.error('❌ Email sending exception:', emailErr);
+				emailError = 'RESEND_KEY not configured';
+				console.log('📧 Skipping email - RESEND_KEY not available');
+			} else {
+				try {
+					console.log('📧 Attempting to send email via Resend...');
+					
+					const emailResponse = await fetch('https://api.resend.com/emails', {
+						method: 'POST',
+						headers: {
+							Authorization: `Bearer ${env.RESEND_KEY}`,
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							from: 'onboarding@resend.dev',
+							to: 'dta35@cornell.edu',
+							subject: `Wine Storage Request: ${(data.first_name || '').trim()} ${(data.last_name || '').trim()} (${data.cases || 'unknown'} cases)`,
+							html: emailBody
+						})
+					});
+
+					const emailResponseText = await emailResponse.text();
+					console.log('📧 Resend API response status:', emailResponse.status);
+					console.log('📧 Resend API response body:', emailResponseText);
+
+					if (!emailResponse.ok) {
+						emailStatus = 'failed';
+						emailError = `Resend API error ${emailResponse.status}: ${emailResponseText}`;
+						console.error('❌ Email sending failed:', emailError);
+					} else {
+						console.log('✅ Email sent successfully!');
+					}
+				} catch (emailErr) {
+					emailStatus = 'failed';
+					emailError = `Email sending exception: ${emailErr.message}`;
+					console.error('❌ Email sending exception:', emailErr);
+				}
 			}
 
 			// Send to Google Sheets via Apps Script webhook - DISABLED
