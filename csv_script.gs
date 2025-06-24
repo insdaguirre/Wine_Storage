@@ -25,7 +25,7 @@ function doPost(e) {
       data.phone || '',
       data.cases || '',
       data.price_estimate || '',
-      data.not_a_robot === 'on' ? 'Yes' : 'No',
+      data.comments || '',
       new Date().toLocaleString(),
       data.userAgent || ''
     ];
@@ -78,7 +78,7 @@ function setupHeaders() {
     'Phone',
     'Cases',
     'Price Estimate',
-    'Robot Check',
+    'Comments',
     'Timestamp',
     'User Agent'
   ];
@@ -98,9 +98,9 @@ function testWebhook() {
         last_name: 'User',
         email: 'test@example.com',
         phone: '555-1234',
-        cases: '1-10',
+        cases: '0-10',
         price_estimate: 'Test estimate',
-        not_a_robot: 'on',
+        comments: 'Test comments',
         userAgent: 'Test Agent'
       })
     }

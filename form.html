@@ -1,43 +1,66 @@
 <div style="max-width:600px;margin:0 auto;">
     <!-- === FORM === -->
-    <form id="wineForm" style="border:2px solid #000;padding:30px 25px;border-radius:8px;box-sizing:border-box;" onsubmit="return false;">
-      <div style="display:flex;gap:10px;">
-        <label style="flex:1;">First Name*<br><input type="text" id="firstName" name="first_name" required></label>
-        <label style="flex:1;">Last Name*<br><input type="text" id="lastName" name="last_name" required></label>
+    <form id="wineForm" style="border:2px solid #000;padding:30px 25px;border-radius:8px;box-sizing:border-box;font-family: 'Pontano Sans', sans-serif;" onsubmit="return false;">
+      <div style="display:flex;gap:15px;margin-bottom:20px;">
+        <div style="flex:1;">
+          <label style="font-weight:500;display:block;margin-bottom:8px;">First Name<span class="required-asterisk">*</span></label>
+          <input type="text" id="firstName" name="first_name" required style="width:100%;padding:12px;font-size:16px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;">
+        </div>
+        <div style="flex:1;">
+          <label style="font-weight:500;display:block;margin-bottom:8px;">Last Name<span class="required-asterisk">*</span></label>
+          <input type="text" id="lastName" name="last_name" required style="width:100%;padding:12px;font-size:16px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;">
+        </div>
       </div>
-  
-      <label>Email*<br><input type="email" id="email" name="email" required></label>
-      <label>Phone*<br><input type="tel" id="phone" name="phone" required></label>
-  
-      <label>How many cases will you be storing with us?*</label>
-      <div id="casesContainer" style="display:flex;flex-wrap:wrap;gap:10px;">
-        <label style="width:45%"><input type="radio" name="cases" value="1-10" required> 1–10</label>
-        <label style="width:45%"><input type="radio" name="cases" value="10-20"> 10–20</label>
-        <label style="width:45%"><input type="radio" name="cases" value="20-40"> 20–40</label>
-        <label style="width:45%"><input type="radio" name="cases" value="40-60"> 40–60</label>
-        <label style="width:45%"><input type="radio" name="cases" value="60-100"> 60–100</label>
-        <label style="width:45%"><input type="radio" name="cases" value="100-125"> 100–125</label>
-        <label style="width:45%"><input type="radio" name="cases" value="125-140"> 125–140</label>
-        <label style="width:45%"><input type="radio" name="cases" value="140-170"> 140–170</label>
-        <label style="width:45%"><input type="radio" name="cases" value="170-225"> 170–225</label>
-        <label style="width:45%"><input type="radio" name="cases" value="225-420"> 225–420</label>
-        <label style="width:45%"><input type="radio" name="cases" value="420-690"> 420–690</label>
-        <label style="width:45%"><input type="radio" name="cases" value="690-1000"> 690–1000</label>
-        <label style="width:45%"><input type="radio" name="cases" value="1000+"> 1000+</label>
+
+      <div style="margin-bottom:20px;">
+        <label style="font-weight:500;display:block;margin-bottom:8px;">Email<span class="required-asterisk">*</span></label>
+        <input type="email" id="email" name="email" required style="width:100%;padding:12px;font-size:16px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;">
       </div>
-  
-      <label><input type="checkbox" id="robotCheck" name="not_a_robot" required> I am not a robot*</label>
+
+      <div style="margin-bottom:20px;">
+        <label style="font-weight:500;display:block;margin-bottom:8px;">Phone<span class="required-asterisk">*</span></label>
+        <input type="tel" id="phone" name="phone" required style="width:100%;padding:12px;font-size:16px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;">
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <label style="font-weight:500;display:block;margin-bottom:12px;">How many cases will you be storing with us?<span class="required-asterisk">*</span></label>
+        <div id="casesContainer" style="display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;">
+          <!-- LEFT COLUMN: 7 highest ranges (126-140 through 1000+) -->
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="126-140" style="margin-right:20px;"> 126–140</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="141-170" style="margin-right:20px;"> 141–170</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="171-225" style="margin-right:20px;"> 171–225</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="226-420" style="margin-right:20px;"> 226–420</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="421-690" style="margin-right:20px;"> 421–690</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="691-1000" style="margin-right:20px;"> 691–1000</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="1000+" style="margin-right:20px;"> 1000+</label>
+          
+          <!-- RIGHT COLUMN: 7 lowest ranges (1-10 through 101-125) -->
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="1-10" required style="margin-right:20px;"> 1–10</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="11-20" style="margin-right:20px;"> 11–20</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="21-40" style="margin-right:20px;"> 21–40</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="41-60" style="margin-right:20px;"> 41–60</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="61-70" style="margin-right:20px;"> 61–70</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="71-100" style="margin-right:20px;"> 71–100</label>
+          <label style="display:flex;align-items:center;cursor:pointer;"><input type="radio" name="cases" value="101-125" style="margin-right:20px;"> 101–125</label>
+        </div>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <label style="font-weight:500;display:block;margin-bottom:8px;">Comments (Optional)</label>
+        <textarea id="comments" name="comments" placeholder="Any additional information or special requests..." style="width:100%;padding:12px;font-size:16px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;min-height:80px;resize:vertical;font-family:inherit;"></textarea>
+      </div>
+
       <input type="hidden" name="price_estimate" id="priceEstimateInput">
-      <button type="button" id="submitBtn">Submit</button>
+      <button type="button" id="submitBtn" style="background-color:#333;color:white;padding:12px 24px;border:none;border-radius:6px;font-size:16px;cursor:pointer;font-weight:500;width:100%;font-family:inherit;">Submit</button>
     </form>
-  
+
     <!-- thank-you -->
-    <div id="result" style="display:none;margin-top:20px;padding:15px;border:1px solid #ccc;border-radius:6px;">
-      <p>✅ Thank you! Your request has been submitted.</p>
-      <p id="thankYouPrice" style="font-weight:500;"></p>
-      <p>If you have any questions, please reach out to <a href="mailto:info@intlwinevault.com">info@intlwinevault.com</a>.</p>
-      <small>
-        <ol style="padding-left:20px;">
+    <div id="result" style="display:none;margin-top:20px;padding:20px;border:1px solid #ccc;border-radius:6px;font-family: 'Pontano Sans', sans-serif;">
+      <p style="margin:0 0 15px 0;font-size:16px;">✅ Thank you! Your request has been submitted.</p>
+      <p id="thankYouPrice" style="font-weight:500;margin:0 0 15px 0;font-size:16px;"></p>
+      <p style="margin:0 0 15px 0;font-size:14px;">If you have any questions, please reach out to <a href="mailto:info@intlwinevault.com" style="color:#333;text-decoration:none;">info@intlwinevault.com</a>.</p>
+      <small style="font-size:12px;color:#666;">
+        <ol style="padding-left:20px;margin:0;">
           <li>Unit sizes are based on a standard Bordeaux case.</li>
           <li>Prices are quoted in six-month intervals.</li>
           <li>Amounts shown are conservative estimates and are subject to change.</li>
@@ -46,48 +69,15 @@
     </div>
   </div>
   
-  <style>
-    form input, form select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-  
-    form label {
-      font-weight: 500;
-      display: block;
-      margin-bottom: 10px;
-    }
-  
-    form > * {
-      margin-bottom: 15px;
-    }
-  
-    button {
-      background-color: #333;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  
+    <style>
+    /* Form styling is now inline for better compatibility */
     button:hover:not(:disabled) {
-      background-color: #555;
+      background-color: #555 !important;
     }
-  
+
     button:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-  
-    .required {
-      color: red;
-      margin-left: 3px;
+      background-color: #ccc !important;
+      cursor: not-allowed !important;
     }
     
     .wine-form-hidden {
@@ -96,6 +86,23 @@
     
     .wine-form-visible {
       display: block !important;
+    }
+
+    /* Improve radio button and checkbox styling */
+    input[type="radio"], input[type="checkbox"] {
+      width: auto !important;
+      margin: 0 !important;
+    }
+
+    /* Match International Wine Vault website fonts */
+    * {
+      font-family: 'Pontano Sans', sans-serif;
+    }
+
+    /* Style required asterisks */
+    .required-asterisk {
+      color: #dc3545;
+      font-weight: bold;
     }
   </style>
   
@@ -128,7 +135,7 @@
       const lastNameInput = document.getElementById('lastName');
       const emailInput = document.getElementById('email');
       const phoneInput = document.getElementById('phone');
-      const robotCheck = document.getElementById('robotCheck');
+      const commentsInput = document.getElementById('comments');
   
       if (!form || !price || !box || !ty || !submitBtn) {
         console.error('🔥 Missing form elements');
@@ -138,21 +145,22 @@
       // Mark as initialized
       window.wineFormInitialized = true;
   
-      // Updated price map to match working example
+      // Updated price map to match Wine Storage v2.xlsx
       const caseMap = {
         "1-10": 178,
-        "10-20": 260,
-        "20-40": 483,
-        "40-60": 632,
-        "60-100": 919,
-        "100-125": 1300,
-        "125-140": 1450,
-        "140-170": 1600,
-        "170-225": 1900,
-        "225-420": 2500,
-        "420-690": 3500,
-        "690-1000": 4500,
-        "1000+": 6000
+        "11-20": 260,
+        "21-40": 483,
+        "41-60": 632,
+        "61-70": 754,
+        "71-100": 919,
+        "101-125": 1150,
+        "126-140": 1264,
+        "141-170": 1545,
+        "171-225": 2025,
+        "226-420": 3200,
+        "421-690": 4830,
+        "691-1000": 5500,
+        "1000+": "contact"
       };
 
       function findSelectedCase() {
@@ -253,7 +261,13 @@
   
         const val = sel.value;
         const p = caseMap[val];
-        const est = `Estimated cost for storing ${val} cases for 6 months: $${p}`;
+        let est;
+        
+        if (p === "contact") {
+          est = `For storing ${val} cases: Please contact us for a custom quote`;
+        } else {
+          est = `Estimated cost for storing ${val} cases for 6 months: $${p.toLocaleString()}`;
+        }
         
         // Manually collect all form data
         const formData = {
@@ -262,7 +276,7 @@
           email: emailInput ? emailInput.value.trim() : '',
           phone: phoneInput ? phoneInput.value.trim() : '',
           cases: val,
-          not_a_robot: robotCheck ? (robotCheck.checked ? 'on' : '') : '',
+          comments: commentsInput ? commentsInput.value.trim() : '',
           price_estimate: est
         };
         

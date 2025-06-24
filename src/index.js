@@ -56,7 +56,7 @@ export default {
 				<p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
 				<p><strong>Cases:</strong> ${data.cases || 'Not selected'}</p>
 				<p><strong>Price Estimate:</strong> ${data.price_estimate || 'Not calculated'}</p>
-				<p><strong>Robot Check:</strong> ${data.not_a_robot ? 'Verified' : 'Not verified'}</p>
+				<p><strong>Comments:</strong> ${data.comments || 'None provided'}</p>
 				<p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
 				<hr>
 				<details>
@@ -102,10 +102,12 @@ export default {
 				console.error('❌ Email sending exception:', emailErr);
 			}
 
-			// Send to Google Sheets via Apps Script webhook
-			let sheetsStatus = 'success';
+			// Send to Google Sheets via Apps Script webhook - DISABLED
+			let sheetsStatus = 'disabled';
 			let sheetsError = null;
 
+			// COMMENTED OUT - Google Sheets integration is disabled
+			/*
 			try {
 				console.log('📊 Attempting to send data to Google Sheets...');
 				
@@ -137,6 +139,7 @@ export default {
 				sheetsError = `Google Sheets sending exception: ${sheetsErr.message}`;
 				console.error('❌ Google Sheets sending exception:', sheetsErr);
 			}
+			*/
 
 			// Return success response with CORS headers and both email and sheets status
 			return new Response(JSON.stringify({ 
