@@ -53,16 +53,14 @@
     </form>
 
     <!-- thank-you -->
-    <div id="result" style="display:none;margin-top:20px;padding:20px;border:1px solid #ccc;border-radius:6px;font-family: 'Pontano Sans', sans-serif;">
-      <p style="margin:0 0 15px 0;font-size:16px;">✅ Thank you! Your request has been submitted.</p>
-      <p id="thankYouPrice" style="font-weight:500;margin:0 0 15px 0;font-size:16px;"></p>
-      <p style="margin:0 0 15px 0;font-size:14px;">If you have any questions, please reach out to <a href="mailto:info@intlwinevault.com" style="color:#333;text-decoration:none;">info@intlwinevault.com</a>.</p>
-      <small style="font-size:12px;color:#666;">
-        <ol style="padding-left:20px;margin:0;">
-          <li>Unit sizes are based on a standard Bordeaux case.</li>
-          <li>Prices are quoted in six-month intervals.</li>
-          <li>Amounts shown are conservative estimates and are subject to change.</li>
-        </ol>
+    <div id="result" style="display:none;margin-top:20px;padding:20px;border:1px solid #ccc;border-radius:6px;font-family: 'Pontano Sans', sans-serif;text-align:center;">
+      <p style="margin:0 0 20px 0;font-size:16px;">✅ Thank you! Your request has been submitted!</p>
+      <p id="thankYouPrice" style="font-weight:500;margin:0 0 20px 0;font-size:16px;"></p>
+      <p style="margin:0 0 20px 0;font-size:14px;">If you have any questions, please reach out to <a href="mailto:info@intlwinevault.com" class="contact-link">info@intlwinevault.com</a> or <a href="tel:+16177394401" class="contact-link">(617) 739-4401</a>.</p>
+      <small style="font-size:12px;color:#666;text-align:left;display:inline-block;margin-top:15px;">
+        Unit sizes are based on a standard Bordeaux case.<br>
+        Prices are quoted in six-month intervals.<br>
+        Amounts shown are conservative estimates and are subject to change.
       </small>
     </div>
   </div>
@@ -101,6 +99,16 @@
     .required-asterisk {
       color: #dc3545;
       font-weight: bold;
+    }
+
+    /* Style contact links */
+    .contact-link {
+      color: #333;
+      text-decoration: underline;
+    }
+
+    .contact-link:hover {
+      color: #0066cc;
     }
   </style>
   
@@ -264,7 +272,7 @@
         if (p === "contact") {
           est = `For storing ${val} cases: Please contact us for a custom quote`;
         } else {
-          est = `Estimated cost for storing ${val} cases for 6 months: $${p.toLocaleString()}`;
+          est = `Storing ${val} cases for 6 months is estimated to cost $${p.toLocaleString()}.`;
         }
         
         // Manually collect all form data
