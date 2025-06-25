@@ -4,7 +4,7 @@ A complete lead capture system for wine storage services, featuring a Squarespac
 
 ## ⚠️ Google Sheets Integration Status
 
-**Google Sheets functionality has been temporarily disabled** but can be easily re-enabled. The integration code remains in the codebase (`src/index.js` lines 95-124) but is commented out. To re-integrate Google Sheets:
+**Google Sheets functionality has been disabled at client request** but can be easily re-enabled. The integration code remains in the codebase (`src/index.js` lines 95-124) but is commented out. To re-integrate Google Sheets:
 
 1. **Uncomment the Google Sheets code** in `src/index.js` (remove the `/*` and `*/` around the sheets integration)
 2. **Update the Apps Script deployment** if needed using `csv_script.gs`
