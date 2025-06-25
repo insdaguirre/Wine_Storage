@@ -86,10 +86,9 @@ sequenceDiagram
 - **Robust Validation**: Client-side validation with error handling
 - **Squarespace Integration**: Compatible with Squarespace's injection system
 - **Mobile Responsive**: Works on all device sizes
-- **Bot Protection**: Simple checkbox verification
 
 ### Backend Processing
-- **Multi-Channel Storage**: Data saved to both Cloudflare KV and Google Sheets
+- **Multi-Channel Storage**: Data saved to both Cloudflare KV and Google Sheets (if enabled) 
 - **Email Notifications**: Formatted HTML emails sent via Resend
 - **Error Handling**: Comprehensive logging and graceful failure recovery
 - **CORS Support**: Cross-origin requests from any domain
@@ -116,7 +115,7 @@ sequenceDiagram
 - **To Address**: `info@intlwinevault.com`
 - **Domain Status**: Using default Resend domain
 
-### Google Cloud Platform
+### Google Cloud Platform 
 - **Email**:currently set to dta35@cornell.edu, can be switched
 - **Deployment ID**: `AKfycbxjGIwt8YXfz4jmOcLqM8-2nMWMS2WM1IzdE92sSZdsS6G0AiWRe49EcJD4LE0A3OhG`
 - **Webhook URL**: `https://script.google.com/macros/s/AKfycbxjGIwt8YXfz4jmOcLqM8-2nMWMS2WM1IzdE92sSZdsS6G0AiWRe49EcJD4LE0A3OhG/exec`
