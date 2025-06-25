@@ -1,6 +1,16 @@
 # Wine Storage Form System
 
-A complete lead capture system for wine storage services, featuring a Squarespace-compatible form that collects customer inquiries and automatically processes them through multiple channels: email notifications, cloud storage, and Google Sheets tracking.
+A complete lead capture system for wine storage services, featuring a Squarespace-compatible form that collects customer inquiries and automatically processes them through email notifications and cloud storage.
+
+## ⚠️ Google Sheets Integration Status
+
+**Google Sheets functionality has been temporarily disabled** but can be easily re-enabled. The integration code remains in the codebase (`src/index.js` lines 95-124) but is commented out. To re-integrate Google Sheets:
+
+1. **Uncomment the Google Sheets code** in `src/index.js` (remove the `/*` and `*/` around the sheets integration)
+2. **Update the Apps Script deployment** if needed using `csv_script.gs`
+3. **Deploy the worker** with `wrangler deploy`
+
+The Google Apps Script webhook handler (`csv_script.gs`) and spreadsheet configuration remain intact and ready for use.
 
 ## 🏗️ System Architecture
 
@@ -10,8 +20,8 @@ graph TD
     B --> C[Cloudflare Worker<br/>wine-storage.iwv.workers.dev]
     C --> D[Cloudflare KV<br/>WINES namespace]
     C --> E[Resend Email API<br/>Notifications]
-    C --> F[Google Apps Script<br/>Webhook]
-    F --> G[Google Sheets<br/>Lead Tracking]
+    C -.-> F[Google Apps Script<br/>Webhook - DISABLED]
+    F -.-> G[Google Sheets<br/>Lead Tracking - DISABLED]
     
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style C fill:#ff9,stroke:#333,stroke-width:2px
@@ -32,7 +42,7 @@ graph TD
   - Processes form submissions
   - Stores data in Cloudflare KV
   - Sends email notifications via Resend
-  - Forwards data to Google Apps Script webhook
+  - Google Sheets integration (currently disabled)
   - Handles CORS and error management
 
 - **`csv_script.gs`** - Google Apps Script webhook handler
@@ -98,12 +108,13 @@ sequenceDiagram
 - **Custom Domain**: `wine-storage.iwv.workers.dev`
 - **KV Namespace**: `WINES` (ID: `c93a28dcff3f4aa48003255eb3783390`)
 
-### Resend Email Service
-- **Email**: currently set to dta35@cornell.edu, can be switched
+### Resend Email Service (IWV Account)
+- **Account Email**: `info@intlwinevault.com`
+- **Service**: Resend (IWV account)
 - **API Key**: (stored as Worker secret)
-- **From Address**: `onboarding@resend.dev` (sandbox domain), need to link to your domain 
-- **To Address**: `dta35@cornell.edu` can be adjusted to wherever you want it 
-- **Domain Status**: Using sandbox (intlwinevault.com unverified)
+- **From Address**: `onboarding@resend.dev` (default Resend domain)
+- **To Address**: `info@intlwinevault.com`
+- **Domain Status**: Using default Resend domain
 
 ### Google Cloud Platform
 - **Email**:currently set to dta35@cornell.edu, can be switched
@@ -143,124 +154,6 @@ sequenceDiagram
 - **Cell Limit**: 10 million cells per spreadsheet
 - **API Calls**: 300 requests/minute per project
 - **Monthly Cost**: $0
-
-## 🚀 Deployment Instructions
-
-### 1. Cloudflare Worker Setup
-```bash
-# Install dependencies
-npm install
-
-# Configure Wrangler (first time only)
-npx wrangler login
-
-# Set up secrets
-npx wrangler secret put RESEND_KEY
-
-# Deploy worker
-npx wrangler deploy
-
-# Monitor logs (optional)
-npx wrangler tail
-```
-
-### 2. Google Apps Script Setup
-1. Go to [Google Apps Script](https://script.google.com/)
-2. Create new project
-3. Paste contents of `csv_script.gs`
-4. Save project
-5. Deploy as web app:
-   - Execute as: Me
-   - Who has access: Anyone
-6. Copy deployment URL
-7. Run `setupHeaders()` function to initialize spreadsheet
-
-### 3. Form Integration
-1. Copy `form.html` content
-2. Inject into Squarespace via Code Injection
-3. Update worker URL if needed
-4. Test form submission
-
-## 📋 GitHub Integration
-
-### Initial Repository Setup
-```bash
-# Initialize git repository
-git init
-
-# Add all files
-git add .
-
-# Create initial commit
-git commit -m "Initial wine storage form system"
-
-# Add GitHub remote (replace with your repository)
-git remote add origin https://github.com/[YOUR_USERNAME]/wine-storage.git
-
-# Push to GitHub
-git push -u origin main
-```
-
-### Environment Variables Management
-Create `.env.example` file:
-```bash
-# Cloudflare Configuration
-CLOUDFLARE_ACCOUNT_ID=your_account_id_here
-CLOUDFLARE_API_TOKEN=your_api_token_here
-
-# Resend Configuration  
-RESEND_KEY=your_resend_api_key_here
-
-# Google Configuration
-GOOGLE_SPREADSHEET_ID=1SeBx16Skhzg5NRZR3ghM_sj_SRt6fGS2fgkij7lR9Gw
-GOOGLE_APPS_SCRIPT_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
-```
-
-### Continuous Deployment (Optional)
-Set up GitHub Actions for automatic deployment:
-
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy to Cloudflare Workers
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      - run: npm ci
-      - run: npx wrangler deploy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-```
-
-### Security Best Practices
-1. **Never commit API keys** - Use `.gitignore` for sensitive files
-2. **Use Wrangler secrets** for production API keys
-3. **Rotate keys regularly** - Update API keys quarterly
-4. **Monitor usage** - Set up alerts for quota limits
-5. **Backup data** - Regular exports of Google Sheets data
-
-## 🔧 Troubleshooting
-
-### Common Issues
-1. **Form not submitting**: Check browser console for JavaScript errors
-2. **Emails not sending**: Verify Resend API key and domain status
-3. **Sheets not updating**: Check Apps Script execution logs
-4. **CORS errors**: Ensure proper headers in Cloudflare Worker
-
-### Monitoring & Logs
-- **Cloudflare**: `npx wrangler tail`
-- **Google Apps Script**: Executions tab in Apps Script editor
-- **Resend**: Dashboard at resend.com
-- **Form**: Browser developer tools console
 
 ## 📈 Scaling Considerations
 
