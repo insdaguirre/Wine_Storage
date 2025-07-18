@@ -58,11 +58,6 @@ export default {
 				<p><strong>Price Estimate:</strong> ${data.price_estimate || 'Not calculated'}</p>
 				<p><strong>Comments:</strong> ${data.comments || 'None provided'}</p>
 				<p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
-				<hr>
-				<details>
-					<summary>Raw Data</summary>
-					<pre>${JSON.stringify(data, null, 2)}</pre>
-				</details>
 			`;
 
 			let emailStatus = 'success';
